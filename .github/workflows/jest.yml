@@ -22,7 +22,6 @@ jobs:
         run: |
           echo Branch: ${{ github.head_ref }}
       - name: Run Jest
-        uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.6
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          package-manager: 'yarn'
-          test-script: yarn test:ci
+          test-script: npx jest --coverage --silent --testLocationInResults --ci --json --outputFile=\"report.json\""
