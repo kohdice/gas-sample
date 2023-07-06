@@ -1,0 +1,5 @@
+{
+  "scriptId": "Your script ID",
+  "rootDir": "./src",
+  "fileExtension": "ts"
+}
