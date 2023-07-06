@@ -24,4 +24,4 @@ jobs:
       - name: Run Jest
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          test-script: npx jest --coverage --silent --testLocationInResults --ci --json --outputFile=\"report.json\"
+          test-script: npx jest --coverage --silent --testLocationInResults --ci --json --outputFile=report.json
