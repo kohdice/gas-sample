@@ -1,0 +1,38 @@
+name: Static code analysis with eslint
+
+run-name: ${{ github.actor }} is running static analysis with eslint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Branch Check
+        run: |
+          echo Branch: ${{ github.head_ref }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: yarn Install Dependencies
+        run: |
+          yarn intall
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-pr-review
+          eslint_flags: 'src/**/*.{ts,tsx}'
+          fail_on_error: 'true'
